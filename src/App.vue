@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import {RouterView} from 'vue-router'
 import type {GlobalThemeOverrides} from "naive-ui";
-import {NConfigProvider, NThemeEditor} from "naive-ui";
+import {NConfigProvider, NMessageProvider} from "naive-ui";
 
 const theme: GlobalThemeOverrides = {
   "common": {
-    "fontSize": "20px",
-    "fontSizeLarge": "26px",
-    "fontSizeHuge": "36px",
     "primaryColor": "#44af69FF"
   },
   "Button": {
@@ -15,7 +12,8 @@ const theme: GlobalThemeOverrides = {
     "heightMedium": "40px"
   },
   "Card": {
-    "titleFontSizeMedium": "30px"
+    "titleFontSizeMedium": "26px",
+    paddingMedium: "10px 15px 10px"
   }
 }
 </script>
@@ -23,12 +21,13 @@ const theme: GlobalThemeOverrides = {
 <template>
   <header>
   </header>
-  <n-theme-editor>
 
-    <n-config-provider :theme-overrides="theme">
+  <n-config-provider :theme-overrides="theme">
+    <n-message-provider>
+
       <RouterView/>
-    </n-config-provider>
-  </n-theme-editor>
+    </n-message-provider>
+  </n-config-provider>
 
 </template>
 
