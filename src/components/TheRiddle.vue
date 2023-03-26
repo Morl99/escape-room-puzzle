@@ -1,7 +1,7 @@
 <template>
   <div>
     <n-card :title="title" class="riddle" :class="status">
-      {{ taskDescription }}
+      {{ teaser }}
       <template #cover>
         <img :src=image>
       </template>
@@ -19,11 +19,9 @@
         <img :src="image">
       </template>
 
-      <p>Denk an eine Zeit von vor etwa 6 Jahren zurück. Da hast du plötzlich eine Gruppe von Menschen kennen gelernt.
-        Es
-        ist wichtig, dass du dich erinnern kannst, du brauchst die Vornamen für das Codewort. Sortiere die Vornamen
-        aufsteigend nach Alphabet. Jetzt nimmst du jeweils den Buchstaben, der an der Stelle steht, die zur Position des
-        Namens in der eben gebildeten Liste passt. Setze diese Buchstaben zusammen, und du erhältst das Codewort.</p>
+      <p>
+        <slot/>
+      </p>
 
       <n-form
           ref="formRef"
@@ -62,7 +60,7 @@ import {
 const props = defineProps<{
   image: string
   title: string
-  taskDescription: string
+  teaser: string
   step: number
   code: number
   solution: string
@@ -73,7 +71,6 @@ const showModal = ref(false)
 const form = ref({input: ''})
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
-const emit = defineEmits(['solved'])
 const riddleStore = useRiddleStore()
 const status = computed(() => riddleStore.riddles[props.step - 1])
 const rules = {

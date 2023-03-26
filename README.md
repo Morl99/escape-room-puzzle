@@ -2,7 +2,7 @@
 
 ## ToDos
 
-- [ ] Textbeschreibung aus TheRiddle extrahieren
+- [x] Textbeschreibung aus TheRiddle extrahieren
 - [ ] Validate Button umbenennen und ausrichten
 - [ ] Farbcodierung der Lösungen?
 - [ ] Zustand im Store persistieren
