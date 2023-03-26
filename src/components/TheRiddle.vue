@@ -29,12 +29,13 @@
           :label-width="80"
           :model="form"
           :rules="rules"
+
       >
         <n-form-item path="input">
-          <n-input v-model:value="form.input" placeholder="Codewort"/>
+          <n-input v-model:value="form.input" placeholder="Codewort" @keyup.enter="validate"/>
         </n-form-item>
-        <n-button round type="primary" @click="validate">
-          Validate
+        <n-button :type="wrongAnswer? 'error' : 'primary'" @click="validate">
+          Lösen
         </n-button>
       </n-form>
     </n-modal>
@@ -73,6 +74,7 @@ const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const riddleStore = useRiddleStore()
 const status = computed(() => riddleStore.riddles[props.step - 1])
+const wrongAnswer = ref(false)
 const rules = {
   input: {
     validator(rule: FormItemRule, value: String) {
@@ -91,6 +93,10 @@ const validate = (e: MouseEvent) => {
       setTimeout(() => showModal.value = false, 3000)
     } else {
       console.log(errors)
+      wrongAnswer.value = true
+      setTimeout(() => {
+        wrongAnswer.value = false
+      }, 5000)
       message.error('Falsche Antwort! Denk nochmal drüber nach.')
     }
   })
@@ -114,6 +120,10 @@ const validate = (e: MouseEvent) => {
     height: 195px;
     object-fit: cover;
   }
+}
+
+.n-form.n-form--inline {
+  align-items: center;
 }
 
 .n-modal {
