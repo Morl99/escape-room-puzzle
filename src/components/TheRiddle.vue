@@ -43,7 +43,6 @@
 </template>
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import type {Status} from '@/stores/riddle'
 import {useRiddleStore} from "@/stores/riddle";
 import {
   type FormInst,
@@ -65,7 +64,6 @@ const props = defineProps<{
   step: number
   code: number
   solution: string
-  status: Status
 }>()
 
 const showModal = ref(false)
@@ -83,7 +81,7 @@ const rules = {
     message: ""
   }
 }
-const validate = (e: MouseEvent) => {
+const validate = (e: MouseEvent | KeyboardEvent) => {
   console.log("test")
   e.preventDefault()
   formRef.value?.validate((errors: Array<FormValidationError> | undefined) => {
