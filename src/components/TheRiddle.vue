@@ -4,7 +4,7 @@
       <template v-if="isActive">
         {{ teaser }}
       </template>
-      <n-skeleton v-else text repeat="2"></n-skeleton>
+      <n-skeleton v-else text :repeat="2"></n-skeleton>
       <template #cover>
         <img v-if="isActive" :src=image>
         <n-skeleton v-else height="195px"></n-skeleton>
