@@ -1,9 +1,16 @@
 <template>
   <div>
     <n-card :title="title" class="riddle" :class="status">
-      {{ teaser }}
+      <template v-if="isActive">
+        {{ teaser }}
+      </template>
+      <n-skeleton v-else text repeat="2"></n-skeleton>
       <template #cover>
-        <img :src=image>
+        <img v-if="isActive" :src=image>
+        <n-skeleton v-else height="195px"></n-skeleton>
+      </template>
+      <template v-if="!isActive" #header>
+        <n-skeleton text></n-skeleton>
       </template>
       <template #footer>
         <div class="footer">
@@ -54,6 +61,7 @@ import {
   NFormItem,
   NInput,
   NModal,
+  NSkeleton,
   useMessage
 } from 'naive-ui'
 
@@ -72,6 +80,7 @@ const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const riddleStore = useRiddleStore()
 const status = computed(() => riddleStore.riddles[props.step - 1])
+const isActive = computed(() => status.value !== "disabled")
 const wrongAnswer = ref(false)
 const rules = {
   input: {
@@ -109,10 +118,6 @@ const validate = (e: MouseEvent | KeyboardEvent) => {
 
 .riddle {
   height: 45vh;
-
-  &.disabled {
-    filter: brightness(50%);
-  }
 
   img {
     height: 195px;
