@@ -1,14 +1,15 @@
-import {ref, type Ref} from 'vue'
 import {defineStore} from 'pinia'
+import {useLocalStorage} from "@vueuse/core";
 
 export type Status = "solved" | "next" | "disabled"
 export const useRiddleStore = defineStore('riddle', () => {
-  const riddles = ref([
+  const defaultRiddles = [
     "next",
     "disabled",
     "disabled",
     "disabled"
-  ]) as Ref<Array<Status>>
+  ] as Array<Status>
+  const riddles = useLocalStorage('riddles', defaultRiddles)
 
   function solve(number: number) {
     riddles.value[number] = "solved"
