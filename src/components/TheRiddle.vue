@@ -17,7 +17,9 @@
           <n-button @click="showModal = true" type="primary" :disabled="status !== 'next'">
             {{ status === 'solved' ? 'Gelöst :)' : 'Klick mich!' }}
           </n-button>
-          <div class="step-indicator">{{ status === 'solved' ? code : step }}</div>
+          <div class="step-indicator" :style="{ background: isSolved ? color : 'gray' }">
+            {{ status === 'solved' ? code : step }}
+          </div>
         </div>
       </template>
     </n-card>
@@ -72,6 +74,7 @@ const props = defineProps<{
   step: number
   code: number
   solution: string
+  color: string
 }>()
 
 const showModal = ref(false)
@@ -81,6 +84,7 @@ const message = useMessage()
 const riddleStore = useRiddleStore()
 const status = computed(() => riddleStore.riddles[props.step - 1])
 const isActive = computed(() => status.value !== "disabled")
+const isSolved = computed(() => status.value === "solved")
 const wrongAnswer = ref(false)
 const rules = {
   input: {
@@ -108,6 +112,7 @@ const validate = (e: MouseEvent | KeyboardEvent) => {
     }
   })
 }
+
 </script>
 <style scoped lang="scss">
 @import "@/assets/vars.scss";
@@ -137,13 +142,6 @@ const validate = (e: MouseEvent | KeyboardEvent) => {
 }
 
 .step-indicator {
-  .solved & {
-    background: $primary;
-  }
-
-  .next &, .disabled & {
-    background: gray;
-  }
 
   border-radius: 50%;
   color: white;
