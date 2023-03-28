@@ -97,7 +97,7 @@ const validate = (e: MouseEvent) => {
       setTimeout(() => {
         wrongAnswer.value = false
       }, 5000)
-      message.error('Falsche Antwort! Denk nochmal drüber nach.')
+      message.error('Falsche Antwort! Denk nochmal drüber nach und achte auf Groß- und kleinschreibung.')
     }
   })
 }
