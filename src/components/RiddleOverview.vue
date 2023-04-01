@@ -78,7 +78,7 @@ import img4 from './card-4.jpg'
           ▼
         </pre
           >
-          <div class="portrait">49.2934512, 6.7940246</div>
+          <div class="portrait">46.29345821771, 6.794026312040</div>
         </div>
       </Riddle>
     </n-gi>
