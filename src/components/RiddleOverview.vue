@@ -44,22 +44,55 @@ import img4 from './card-4.jpg'
     </n-gi>
     <n-gi>
       <Riddle
-        :image="img3"
+        :image="img4"
         :step="3"
         title="不可解な"
         teaser="おいしい食べ物
         コードワード?"
         solution="MoschMosch"
-        :code="8"
+        :code="6"
         color="seagreen"
       >
         mmajMmmajM?
       </Riddle>
     </n-gi>
     <n-gi>
-      <Riddle :image="img4" :step="4" title="" teaser="" :code="2" solution="" color="black" />
+      <Riddle
+        :image="img3"
+        :step="4"
+        title="Schöne Zeit!"
+        teaser="Ist es nicht toll, wenn man mit lieben Menschen eine schöne Zeit verbringt? Klar! Aber was hat das jetzt noch mit einem Rätsel zu tun?"
+        :code="8"
+        solution="Cornichons"
+        color="black"
+      >
+        <div class="landscape">
+          <pre>
+          |
+          |
+          |
+          |
+          |
+          |
+          |
+          ▼
+        </pre
+          >
+          <div class="portrait">49.2934512, 6.7940246</div>
+        </div>
+      </Riddle>
     </n-gi>
   </n-grid>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.portrait {
+  display: none;
+}
+
+@media screen and (orientation: portrait) {
+  .portrait {
+    display: initial;
+  }
+}
+</style>

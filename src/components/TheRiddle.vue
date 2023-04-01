@@ -23,7 +23,7 @@
         </div>
       </template>
     </n-card>
-    <n-modal v-model:show="showModal" preset="card" :title="title">
+    <n-modal v-model:show="showModal" preset="card" :title="title" style="max-height: 70vh">
       <template #cover>
         <img :src="image" />
       </template>
@@ -36,7 +36,7 @@
         <n-form-item path="input">
           <n-input v-model:value="form.input" placeholder="Codewort" @keyup.enter="validate" />
         </n-form-item>
-        <n-button :type="wrongAnswer ? 'error' : 'primary'" @click="validate"> Lösen </n-button>
+        <n-button :type="wrongAnswer ? 'error' : 'primary'" @click="validate"> Lösen</n-button>
       </n-form>
     </n-modal>
   </div>
@@ -131,6 +131,8 @@ const validate = (e: MouseEvent | KeyboardEvent) => {
     height: 300px;
     object-fit: cover;
   }
+
+  max-height: 70vh;
 }
 
 .step-indicator {
